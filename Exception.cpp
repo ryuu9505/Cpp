@@ -6,9 +6,10 @@ using namespaces std;
 //////////////////////////////
 // 예외 처리의 예
 //////////////////////////////
+
+// Using just if
 int main()
 {
-  // 1. Using just if
   cin >> numerator >> denominator; // 예외 발생
 
   if (denominator == 0) // 예외 발견
@@ -16,9 +17,12 @@ int main()
   else
     cout << numerator/denominator << endl;
   // 단점 : 예외처리 코드와 다른 코드들 사이의 구분이 어려움
- 
+}
   
-  // 2. Using try, catch and throw
+
+// Using try, catch and throw
+int main()
+{
   cin >> numerator >> denominator; // 예외 발생
 
   try 
@@ -32,3 +36,44 @@ int main()
     cout << "Error : Division by " << expn << endl; // 예외 처리
   }
 }
+
+
+// Stack Unwinding
+void Devide(int numerator, int denominator)
+{
+  if(denominator == 0)
+    throw denominator; // try, catch 없는 함수에서 throw하면 함수 호출한 곳에서 throw됨
+  cout << numerator/denominator << endl;
+}
+
+int main()
+{
+  try
+  {
+    Divide(numerator, denominator); // 여기서 throw
+  }
+  catch(int expn)
+  {
+    cout << "Error : Division by " << expn << endl; // 예외 처리    
+  }
+}
+
+
+// 하나의 try 블록과 다수의 catch() 블록
+try
+{
+  
+}
+catch(char ch)
+{
+  
+}
+catch(int n)
+{
+    
+}
+
+
+// 클래스의 객체도 예외 데이터가 될 수 있다.
+
+
